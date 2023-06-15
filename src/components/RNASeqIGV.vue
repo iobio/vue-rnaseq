@@ -1,34 +1,35 @@
 <template>
   <v-container>
-    <v-card>
-      <v-layout column>
-        <v-layout row justify-space-between>
-          <v-flex xs3>
+    <div class="d-flex flex-column">
+      <div id="igv-heading" class="d-flex flex-row justify-space-between align-center mb-1" >
+          <div id="igv-title">
             {{heading}}
-          </v-flex>
-          <v-layout xs3 justify-center>
-            <v-btn fab small @click='zoomOut'>
-              <v-icon>zoom_out</v-icon>
+          </div>
+          <div class="d-flex flex-row justify-space-between">
+            <v-btn flat @click='zoomOut'>
+              <v-icon class="igv-zoom-icon" size="22" icon="fa:fas fa-search-minus"></v-icon>
             </v-btn>
-            <v-btn fab small @click='zoomIn'>
-              <v-icon>zoom_in</v-icon>
+            <v-btn flat @click='zoomIn'>
+              <v-icon class="igv-zoom-icon"  size="22" icon="fa:fas fa-search-plus"></v-icon>
             </v-btn>
-          </v-layout>
-          <v-flex xs3>
-            <v-btn @click='launchFullIGV'>Open IGV in a Tab</v-btn>
-          </v-flex>
-        </v-layout>
-        <v-flex xs12>
-          <div id='igv-content'></div>
-        </v-flex>
-      </v-layout>
-    </v-card>
+          </div>
+          <div>
+            <v-btn id="igv-launch-button" @click='launchFullIGV'>
+              <v-icon class="igv-zoom-icon" size="16" icon="fa:fas fa-external-link mr-1"></v-icon>
+              Full screen
+          </v-btn>
+          </div>
+      </div>
+      <div>
+        <div id='igv-content'></div>
+      </div>
+    </div>
   </v-container>
 </template>
 
 <script>
 
-import igv from '../../lib/igv.esm'
+import igv from 'igv'
 
 export default {
   name: 'splice-junctions',
@@ -116,6 +117,20 @@ function launchIGV(referenceURL, locus, tracks) {
 </script>
 
 <style>
+
+#igv-heading {
+  color: #616161;
+}
+#igv-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.igv-zoom-icon {
+  color: #616161;
+}
+#igv-launch-button {
+  font-weight: 600;
+}
 
 .igv-right-hand-gutter {
   right: initial;
